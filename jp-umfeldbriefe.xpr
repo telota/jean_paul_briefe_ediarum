@@ -20,7 +20,7 @@
                         <documentTypeEntry-array>
                             <documentTypeEntry>
                                 <field name="documentTypeID">
-                                    <String>6/ediarum.JP-UMFELDBRIEFE.edit/ediarum.jp-umfeldbriefe.register.edit.framework/ediarum.REGISTER.JP-UMFELDBRIEFE.edit</String>
+                                    <String>4/ediarum.JP-UMFELDBRIEFE.edit/ediarum.jp-umfeldbriefe.register.edit.framework/ediarum.REGISTER.JP-UMFELDBRIEFE.edit</String>
                                 </field>
                                 <field name="enable">
                                     <Boolean>false</Boolean>
@@ -44,7 +44,7 @@
                             </documentTypeEntry>
                             <documentTypeEntry>
                                 <field name="documentTypeID">
-                                    <String>6/ediarum.JP-UMFELDBRIEFE.edit/ediarum.jp-umfeldbriefe.edit.framework/ediarum.JP-UMFELDBRIEFE.edit</String>
+                                    <String>4/ediarum.JP-UMFELDBRIEFE.edit/ediarum.jp-umfeldbriefe.edit.framework/ediarum.JP-UMFELDBRIEFE.edit</String>
                                 </field>
                                 <field name="enable">
                                     <Boolean>false</Boolean>
@@ -146,7 +146,7 @@
                                     <String>${ediarum_project_domain}</String>
                                 </field>
                                 <field name="value">
-                                    <String>https://oxygen-bot:oxygen-bot_8025@xmledit.bbaw.de</String>
+                                    <String>http://oxygen-bot:oxygen-bot@localhost:8080</String>
                                 </field>
                                 <field name="shortDescription">
                                     <String></String>
@@ -157,7 +157,7 @@
                                     <String>${ediarum_website_base}</String>
                                 </field>
                                 <field name="value">
-                                    <String>https://website-user:website-user_8025@xmledit.bbaw.de</String>
+                                    <String>https://website-user:website-user@localhost:8080</String>
                                 </field>
                                 <field name="shortDescription">
                                     <String></String>
@@ -267,7 +267,7 @@
                                     <String>${ediarum_status_url}</String>
                                 </field>
                                 <field name="value">
-                                    <String>https://website-user:website-user_8025@xmledit.bbaw.de/jp/rest/db/projects/jp-umfeldbriefe/web/status.xql</String>
+                                    <String>https://website-user:************@localhost:8080/jp/rest/db/projects/jp-umfeldbriefe/web/status.xql</String>
                                 </field>
                                 <field name="shortDescription">
                                     <String></String>
@@ -289,7 +289,7 @@
                                     <String>${ediarum_keywords_url}</String>
                                 </field>
                                 <field name="value">
-                                    <String>https://website-user:website-user_8025@xmledit.bbaw.de/jp/rest/db/projects/jp-umfeldbriefe/web/keywords.xql</String>
+                                    <String>https://website-user:************@localhost:8080/jp/rest/db/projects/jp-umfeldbriefe/web/keywords.xql</String>
                                 </field>
                                 <field name="shortDescription">
                                     <String></String>
@@ -300,7 +300,7 @@
                                     <String>${website_app}</String>
                                 </field>
                                 <field name="value">
-                                    <String>https://website-user:website-user_8025@xmledit.bbaw.de/jp/apps/jp-briefwechsel/umfeldbrief.html?num=${xpath_eval(/TEI/@xml:id)}&amp;fassung=k</String>
+                                    <String>https://website-user:************@localhost:8080/jp/apps/jp-briefwechsel/umfeldbrief.html?num=${xpath_eval(/TEI/@xml:id)}&amp;fassung=k</String>
                                 </field>
                                 <field name="shortDescription">
                                     <String></String>
