@@ -20,7 +20,8 @@ identifiers:
 license: "GPL-3.0"
 url: "https://www.ediarum.org"
 references: 
-  - authors:
+  - title: "ediarum.BASE.edit"
+    authors:
     - family-names: Dumont
       given-names: Stefan
       orcid: "https://orcid.org/0000-0002-6923-0950"
@@ -33,7 +34,6 @@ references:
     - family-names: Klappenbach
       given-names: Lou    
       orcid: "https://orcid.org/0000-0001-6587-3353"
-  title: "ediarum.BASE.edit"
-  type: software
-  repository-code: "https://github.com/ediarum/ediarum.BASE.edit" 
-  version: 2.0.0
+    type: software
+    repository-code: "https://github.com/ediarum/ediarum.BASE.edit" 
+    version: 2.0.0
