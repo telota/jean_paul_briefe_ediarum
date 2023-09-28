@@ -1,0 +1,131 @@
+@namespace xml "http://www.w3.org/XML/1998/namespace";
+@namespace telota "http://www.telota.de";
+
+linkGrp[type = 'corresp']
+{
+    content: "Korrespondenz: ";
+    display: block;
+    font-style: italic;
+    margin-top: 7px;
+    font-size: 95%;
+    padding-left: 15px;
+}
+
+linkGrp[type = 'mention']
+{
+    content: "Erwähnungen: ";
+    display: block;
+        font-style: italic;
+    margin-top: 7px;
+    font-size: 95%;
+    padding-left: 15px;
+}
+
+linkGrp[type = 'abt3']
+{
+    content: "3. Abteilung: ";
+    display: block;
+    margin-top: 3px;
+    font-size: 90%;
+    padding-left: 15px;
+}
+
+linkGrp[type = 'abt4']
+{
+    content: "4. Abteilung: ";
+    display: block;
+    margin-top: 3px;
+    font-size: 90%;
+    padding-left: 15px;
+}
+
+linkGrp[n] {
+    content: "Band " attr(n) ": ";
+    margin-top: 3px;
+    font-size: 90%;
+        padding-left: 15px;
+    }
+
+
+linkGrp[type = 'abt3'] ptr[type = 'letter']{
+    content: "B/" attr(target) "(" attr(corresp) ")";
+}
+
+linkGrp[type = 'abt3'] ptr[type = 'comment']{
+    content: "K/" attr(target) "(" attr(corresp) ")";
+}
+
+linkGrp[type = 'abt3'] ptr[subtype = 'missingLetter']{
+    content: "FB/" attr(target) "(" attr(corresp) ")";
+}
+
+linkGrp[type = 'abt3'] ptr[subtype = 'receivedLetter']{
+    content: "An-B/" attr(target);
+}
+
+linkGrp[type = 'abt3'] ptr[subtype = 'korrigenda']{
+    content: "Corr/" attr(target);   
+}
+
+linkGrp[type = 'abt3'] ptr[subtype = 'literature']{
+    content: "Lit./" attr(target);
+    }
+
+linkGrp[type = 'abt3'] ptr[subtype = 'tafel']{
+    content: "Abb." attr(target);
+    
+}
+linkGrp[type = 'abt4'] ptr[type = 'letter']{
+    content: "B/" attr(target);
+}
+
+linkGrp[type = 'abt4'] ptr[type = 'comment']{
+    content: "K/" attr(target);
+}
+
+
+
+
+listPerson person listPerson {
+    padding-left: 3em;
+    display:block;
+}
+
+person listPerson person:last-child {
+    border-bottom: 0;
+}
+
+persName:not([subtype])[type='alt']:before {
+    content: "Alternative Schreibung: ";
+    color: #666;
+}
+
+list[n='korrespondentenkreise'] item desc:before,
+list[n='themen'] item desc:before{
+    content: "Beschreibung: "; 
+    font-style: italic;
+}
+
+list[n='korrespondentenkreise'] item desc {
+    -oxy-placeholder-content: '[Informationen zum Korrespondenzkreis]';
+    -oxy-show-placeholder: always;
+   /* display:block;*/
+  
+}
+
+list[n='themen'] item desc {
+    -oxy-placeholder-content: '[Definition des Themas]';
+    -oxy-show-placeholder: always;
+   /* display:block;*/
+  
+}
+
+list[n='korrespondentenkreise'] item list:before {
+    content: "Zugeordnete Personen: ";
+    display: block;
+    font-style: italic;
+}
+listBibl head {
+    font-weight: bold;
+    font-size: 120%;
+}

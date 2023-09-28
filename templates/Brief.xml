@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:telota="http://www.telota.de" telota:doctype="letter"
+    xml:id="ed_${id}" type="context">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>${ask('Titel des Briefes', generic, '')}</title>
+                <respStmt>
+                    <persName>
+                        <surname>Nachname</surname>
+                        <forename>Vorname</forename>
+                    </persName>
+                    <resp><note type="remarkResponsibility">Bearbeiter/in</note></resp>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Herausgebende Institution</publisher><availability status="restricted"><licence target="http://creativecommons.org/licenses/by-sa/4.0/"/></availability>
+                
+            </publicationStmt>
+            <sourceDesc>
+                <listWit></listWit><p></p>
+            </sourceDesc>
+          
+        </fileDesc>
+        <profileDesc>
+            <correspDesc>
+                <correspAction type="sent"> </correspAction>
+                <correspAction type="received"> </correspAction>
+                <note/>
+               
+            </correspDesc>
+            <textClass>
+                <keywords scheme="#correspondents">
+                </keywords>
+                <keywords scheme="#topics">
+                </keywords>
+            </textClass>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="writingSession" xml:id="Schreibakt_1"><pb n="1"/>
+                <opener>
+                    <dateline/>
+                    <salute/>
+                </opener>
+                <p></p>
+                <closer>
+                    <salute/>
+                    <signed/>
+                </closer>
+                <postscript>
+                    <p></p>
+                </postscript>
+            </div>
+         
+        </body>
+    </text>
+</TEI>

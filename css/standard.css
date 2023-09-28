@@ -1,0 +1,1080 @@
+@namespace xml "http://www.w3.org/XML/1998/namespace";
+@namespace telota "http://www.telota.de";
+
+/*  handDesc {display: none;}*/
+
+publicationStmt {
+	display: block;margin-bottom: 1em; }
+
+publicationStmt publisher,  
+publicationStmt licence,
+publicationStmt pubPlace,
+publicationStmt date {
+		display: none;   
+	}
+publicationStmt availability {
+		-oxy-display-tags: none;
+	}
+publicationStmt availability[status]:before {
+	    content: ""
+		oxy_checkbox(
+		edit, "@status",
+		values, "free",
+		uncheckedValues, "restricted",
+		labels, "");
+	}
+publicationStmt availability[status='free'] {
+	    color: green;}
+	    
+publicationStmt availability[status='free']:after {
+		    content: "veröffentlicht";
+	    }
+	    
+publicationStmt availability[status='restricted'] {
+	    color: red;}
+	    
+publicationStmt availability[status='restricted']:after {
+		    content: "unveröffentlicht";
+	    }
+	
+text space {
+    content: "        ";
+    border-bottom: 1px dotted gray;
+    -oxy-display-tags: none;
+}
+
+text note[hand = '#author']:after,
+text note[hand = '#addressee']:after {
+    content: none;
+    link: none;
+    -oxy-display-tags: none;
+}
+
+p hi[rendition = '#right'],
+closer hi[rendition = '#right'],
+signed hi[rendition = '#right'],
+salute hi[rendition = '#right'] {
+    display: block;
+    -oxy-display-tags: none;
+    text-align: right;
+}
+
+p hi[rendition = '#c'],
+closer hi[rendition = '#c'],
+closer signed[rendition = '#c'],
+salute hi[rendition = '#c'],
+dateline hi[rendition = '#c']{
+    display: block;
+    -oxy-display-tags: none;
+    text-align: center;
+}
+
+p hi[rendition = '#left'],
+closer hi[rendition = '#left'],
+closer signed[rendition = '#left'],
+salute hi[rendition = '#left'],
+dateline hi[rendition = '#left']{
+    display: block;
+    -oxy-display-tags: none;
+    text-align: left;
+}
+
+hi[rendition='#f']:before {
+    font-size: 80%;
+    font-style: italic;
+    color: gray;
+    display:block;
+}
+
+hi[rendition='#f'][hand= '#author']:before {
+    -oxy-prepend-content: "Umrahmung von Hand des Verfassers" ; 
+     
+}
+
+hi[rendition='#f'][hand= '#addresse']:before {
+    -oxy-prepend-content: "Umrahmung von Hand des Empfängers" ;    
+}
+
+hi[rendition='#f'][hand= '#unknown']:before {    
+    -oxy-prepend-content: "Umrahmung von unbekannter Hand" ;   
+}
+
+hi[rendition='#f'][hand^= '#JP']:before {
+    -oxy-prepend-content: "Umrahmung von Hand einer Person aus dem Register " url('gfx/link.png') ;   
+    link: "https://www.jeanpaul-edition.de/person.html?id=" oxy_xpath("substring-after(@hand, '#')");    
+}
+
+facsimile graphic {
+    content: attr(url)
+}
+
+g[type='currency'] {
+    font-style:italic;
+    -oxy-display-tags: none;
+}
+
+
+hi[rendition = '#f'] {
+    display: block;
+    -oxy-display-tags: none;
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+sourceDesc listWit:before {
+    content: "Überlieferung: ";
+    font-style: normal;
+    font-weight: bold;
+    display: block;
+}
+
+sourceDesc listWit {
+    -oxy-placeholder-content: '[Hier über "Metadaten - Überlieferung" Textzeugen hinzufügen]';
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc > p:before {
+    content: "Textgrundlage: ";
+    font-style: normal;
+    font-weight: bold;
+    display: block;
+    padding-top: 1em;
+}
+
+sourceDesc p {
+    -oxy-placeholder-content: '[Hier Anmerkungen zur Textgrundlage]';
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc msDesc idno {
+    -oxy-placeholder-content: "[ggf. Signatur]";
+}
+
+sourceDesc msDesc institution {
+    -oxy-placeholder-content: "[ggf. aufbewahrende Institution]";
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc msDesc repository {
+    -oxy-placeholder-content: "[ggf. Aufbewahrungsstätte]";
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc msDesc collection {
+    -oxy-placeholder-content: "[ggf. Sammlung]";
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc witness bibl {
+    -oxy-placeholder-content: "[Bibliografischer Nachweis]";
+    -oxy-show-placeholder: always;
+}
+
+sourceDesc msDesc physDesc accMat:before, 
+sourceDesc witness desc[type="accMat"]:before {
+    content: "Beilage: ";
+    font-style: normal;
+    font-weight: normal;
+    padding-left: 1em;
+}
+
+sourceDesc msDesc physDesc accMat,
+sourceDesc witness desc[type="accMat"]{
+    display: block;
+    -oxy-placeholder-content: "[Hier Angaben zur Beilage eintragen]";
+}
+
+sourceDesc msDesc[rend = "manuscript"] {
+    content: "H (orig. Briefhandschrift): ";
+}
+
+sourceDesc msDesc[rend = "manuscript"][type = 'baseText'] {
+    content: "H (orig. Briefhandschrift): ";
+    font-weight: bold;
+}
+
+sourceDesc msDesc[rend = "manuscript"][type = 'baseText'] physDesc {
+    font-weight: normal;
+}
+
+sourceDesc msDesc[rend = "manuscriptCopy"] {
+    content: "Hk (Eigenh. Abschrift des Briefschreibers): ";
+}
+
+sourceDesc msDesc[rend = "manuscriptCopy"][type = 'baseText'] {
+    content: "Hk (Eigenh. Abschrift des Briefschreibers): ";
+    font-weight: bold;
+}
+
+sourceDesc msDesc[rend = "manuscriptCopy"][type = 'baseText'] physDesc {
+    font-weight: normal;
+}
+
+sourceDesc msDesc[rend = "copy"] {
+    content: "h (Abschrift der orig. Briefhandschrift): ";
+}
+
+sourceDesc msDesc[rend = "copy"][type = 'baseText'] {
+    content: "h (Abschrift der orig. Briefhandschrift): ";
+    font-weight: bold;
+}
+
+sourceDesc msDesc[rend = "copy"][type = 'baseText'] physDesc {
+    font-weight: normal;
+}
+
+sourceDesc msDesc[rend = "concept"] {
+    content: "K (Konzept): ";
+}
+
+sourceDesc msDesc[rend = "concept"][type = 'baseText'] {
+    content: "K (Konzept): ";
+    font-weight: bold;
+}
+
+sourceDesc msDesc[rend = "concept"][type = 'baseText'] physDesc {
+    font-weight: normal;
+}
+
+sourceDesc bibl[rend = "print"] {
+    content: "D (Druck): ";
+}
+
+sourceDesc bibl[rend = "print"][type = 'baseText'] {
+    content: "D (Druck): ";
+    font-weight: bold;
+}
+
+sourceDesc bibl[rend = "print"][type = 'witnessText'] {
+    content: "D (Druck): ";
+    font-weight: normal;
+}
+
+sourceDesc witness handNote {
+    content: "Schreibhand: ";
+    color: #465E7A;
+    padding-left: 1em;
+    display:block;
+}
+
+
+sourceDesc witness desc {
+    font-weight: normal;
+}
+
+sourceDesc witness > bibl {
+    content: "D (Druck): ";
+    -oxy-display-tags: none;
+}
+
+sourceDesc witness:nth-child(2) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(3) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(4) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(5) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(6) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(7) > bibl {
+    content: "Druck: ";
+}
+
+sourceDesc witness:nth-child(8) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness:nth-child(9) > bibl {
+    content: "D (Druck): ";
+}
+
+sourceDesc witness[select = '#this'] {
+    font-weight: bold;
+}
+
+sourceDesc msDesc physDesc p {
+    display: block;
+    -oxy-placeholder-content: "[Hier Papier, Format, Blattzahl, Schrift, Schriftverteilung etc. eintragen]";
+}
+
+profileDesc correspDesc:before {
+    content: "Sender/Empfänger-Angaben (Mitleserschaft über Metadaten-Korrespondenz extra bestimmen!): ";
+    font-style: normal;
+    font-weight: bold;
+}
+
+correspDesc note:before:first-of-type {
+    display: block;
+    content: "Anmerkungen zum Korrespondenzakt:";
+    font-weight: bold;
+}
+
+correspDesc note {
+
+    -oxy-placeholder-content: "[Hier Anmerkungen zum 'Korrespondenzakt' eingeben, z.B. zur Weitergabe eines Briefes, zur Datierung, etc.]";
+    -oxy-show-placeholder: always;
+}
+
+profileDesc textClass:before {
+    content: "Schlagwörter/Themen: ";
+    font-style: normal;
+    font-weight: bold;
+    display: block;
+}
+
+profileDesc textClass keywords[scheme='#correspondents'] {
+    display: block;
+      -oxy-placeholder-content: "[Über Metadaten/Überlieferung nach Korrespondenzkreis/en verschlagworten]";
+    -oxy-show-placeholder: always;
+}
+
+profileDesc textClass keywords[scheme='#topics'] {
+    display: block;
+      -oxy-placeholder-content: "[Über Metadaten/Überlieferung nach Themen verschlagworten]";
+    -oxy-show-placeholder: always;
+}
+
+profileDesc textClass keywords[scheme='#correspondents']:before {
+content: 'Korrespondenzkreis/e: ';
+font-weight:bold;
+padding-left: 15px;
+}
+
+profileDesc textClass keywords[scheme='#topics']:before {
+content: 'Verschlagwortung: ';
+font-weight:bold;
+padding-left: 15px;
+}
+
+profileDesc textClass keywords term:after {
+    content: ", ";
+}
+
+profileDesc textClass keywords term:last-of-type:after {
+    content: " ";
+}
+
+text gap[reason = "lost"] {
+    content: "[Textverlust]";
+    font-size: 80%;
+}
+
+text gap[reason = "print"] {
+    content: "[..Auslassung im Druck..]";
+    font-size: 80%;
+}
+
+text gap[reason = "illegible"] {
+    content: "[unleserlich]";
+    font-size: 80%;
+}
+
+text gap[reason = "empty"] {
+    content: "[Leerraum]";
+    font-size: 80%;
+}
+
+text gap[reason = "covered"] {
+    content: "[durch Überschreibung unleserlich]";
+    font-size: 80%;
+}
+
+text gap[reason = "insignificant"] {
+    content: "[irrelevant]";
+    font-size: 80%;
+}
+
+correspContext:before {
+    content: "Korrespondenzkontext: ";
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+correspContext ref {
+    color: #465e7a ;
+}
+correspContext ref[type = "prev"][target] {
+    content: "Vorangehender Brief (Umfeld): ";
+}
+
+correspContext ref[type = "next"][target] {
+    content: "Nachfolgender Brief (Umfeld): ";
+}
+
+correspContext ref[type = "prev"][target ^= "http"] {
+    content: "Vorangehender Brief (III. Abt., Digital): " " " url('gfx/link.png');
+    link: attr(target);
+}
+
+correspContext ref[type = "next"][target ^= "http"] {
+    content: "Nachfolgender Brief (III. Abt., Digital): " " " url('gfx/link.png');
+    link: attr(target);
+}
+
+correspContext ref[type = "prev"][target ^= "4-"] {
+    content: "Vorangehender Brief (IV. Abt., Druck): [" attr(target) "] ";
+}
+
+correspContext ref[type = "next"][target ^= "4-"] {
+    content: "Nachfolgender Brief (IV. Abt., Druck): [" attr(target) "] ";
+}
+
+
+correspContext ref[target]:after {
+    content: " " ;
+    link: " ";
+    color: black;
+}
+
+
+sourceDesc ref {
+    -oxy-display-tags: none;
+    border-bottom: 1px dashed #00C6FF;
+}
+
+/* Verweise auf Briefe im Digital, III Abteilung*/
+
+note ref[type = "letter"]:not(subtype)[target^='http']:hover:after,
+sourceDesc ref[type = "letter"]:not(subtype)[target^='http']:hover:after,
+text ref[type = "letter"]:not(subtype)[target^='http']:hover:after{
+    content: url('gfx/letter.png') " B " attr(target) " " url('gfx/link.png')" " ;
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+note ref[type = "letter"][subtype="document"][target^='http']:hover:after,
+sourceDesc ref[type = "letter"][subtype="document"][target^='http']:hover:after,
+text ref[type = "letter"][subtype="document"][target^='http']:hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'document', 'Dokument')") ") " url('gfx/link.png')" " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+note ref[type = "letter"][subtype="text"][target^='http']:hover:after,
+sourceDesc ref[type = "letter"][subtype="text"][target^='http']:hover:after,
+text ref[type = "letter"][subtype="text"][target^='http']:hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'text', 'Text')") ") " url('gfx/link.png')" " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+note ref[type = "letter"][subtype="comment"][target^='http']:hover:after,
+sourceDesc ref[type = "letter"][subtype="comment"][target^='http']:hover:after,
+text ref[type = "letter"][subtype="comment"][target^='http']:hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'comment', 'Kommentar')") ") " url('gfx/link.png')" " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+
+/* Verweise auf Briefe im Druck, IV Abteilung*/
+
+note ref[type = "letter"]:not(subtype):not([target^='http']):hover:after,
+sourceDesc ref[type = "letter"]:not(subtype):not([target^='http']):hover:after,
+text ref[type = "letter"]:not(subtype):not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " B " attr(target) " ";
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+note ref[type = "letter"][subtype="document"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "letter"][subtype="document"]:not([target^='http']):hover:after,
+text ref[type = "letter"][subtype="document"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'document', 'Dokument')") ") " attr(target) " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+note ref[type = "letter"][subtype="text"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "letter"][subtype="text"]:not([target^='http']):hover:after,
+text ref[type = "letter"][subtype="text"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'text', 'Text')") ") " attr(target) " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+note ref[type = "letter"][subtype="comment"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "letter"][subtype="comment"]:not([target^='http']):hover:after,
+text ref[type = "letter"][subtype="comment"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " B (" oxy_xpath("replace(@subtype, 'comment', 'Kommentar')") ") " attr(target) " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+/* Fehlbriefe III und IV Abteilung */
+
+note ref[type = "missingLetter"][target^='http']:hover:after,
+sourceDesc ref[type = "missingLetter"][target^='http']:hover:after,
+text ref[type = "missingLetter"][target^='http']:hover:after{
+    content: url('gfx/letter.png') " FB "  url('gfx/link.png');
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+note ref[type = "missingLetter"][target^='4-']:hover:after,
+sourceDesc ref[type = "missingLetter"][target^='4-']:hover:after,
+text ref[type = "missingLetter"][target^='4-']:hover:after{
+    content: url('gfx/letter.png') " EB " oxy_xpath("substring-before(@target, '-fb')") " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+    link: attr(target);
+}
+
+/* Verweise auf Kontextbriefe im Druck (Anhang), IV Abteilung*/
+
+note ref[type = "contextLetter"][subtype="document"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "contextLetter"][subtype="document"]:not([target^='http']):hover:after,
+text ref[type = "contextLetter"][subtype="document"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') "  Anh. B (" oxy_xpath("replace(@subtype, 'document', 'Dokument')") ") " oxy_xpath("substring-before(@target, '-k')") " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+note ref[type = "contextLetter"][subtype="text"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "contextLetter"][subtype="text"]:not([target^='http']):hover:after,
+text ref[type = "contextLetter"][subtype="text"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " Anh. B (" oxy_xpath("replace(@subtype, 'text', 'Text')") ") " oxy_xpath("substring-before(@target, '-k')") " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+
+note ref[type = "contextLetter"][subtype="comment"]:not([target^='http']):hover:after,
+sourceDesc ref[type = "contextLetter"][subtype="comment"]:not([target^='http']):hover:after,
+text ref[type = "contextLetter"][subtype="comment"]:not([target^='http']):hover:after{
+    content: url('gfx/letter.png') " Anh. B (" oxy_xpath("replace(@subtype, 'comment', 'Kommentar')") ") " oxy_xpath("substring-before(@target, '-k')") " " attr(corresp);
+    font-style: italic;
+    position: relative;
+    font-size: 80%;
+    text-decoration: none;
+    height: 1.5%;
+    color: #465E7A;
+}
+/* Ende Verweise */
+
+text persName:hover:after {
+    content: url('gfx/persName.gif') " ";
+    height: 2%;
+    link: "https://www.jeanpaul-edition.de/person.html?id=" attr(key);
+    color: #465E7A;
+    -oxy-display-tags: none;
+}
+
+text placeName:hover:after {
+    content: url('gfx/placeName.gif') " ";
+    height: 2%;
+    link: "https://www.jeanpaul-edition.de/ort.html?id=" attr(key);
+    color: #465E7A;
+    -oxy-display-tags: none;
+}
+
+text bibl:hover:after {
+    content: url('gfx/name_bibl.gif') " ";
+    height: 2%;
+    link: "https://www.jeanpaul-edition.de/werk.html?id=" attr(key);
+    color: #465E7A;
+    -oxy-display-tags: none;
+}
+
+text bibl[subtype = 'werke-jp']:hover:after {
+    content: url('gfx/name_bibl.gif') " ";
+    height: 2%;
+    link: "https://www.jeanpaul-edition.de/werk-jp.html?id=" attr(key);
+    color: #465E7A;
+    -oxy-display-tags: none;
+}
+
+hi[hand ^= '#JP-']:not([rendition= '#f']):hover:after,
+del[hand ^= '#JP-']:hover:after,
+add[hand ^= '#JP-']:hover:after{
+    content: "Register";
+    link: "https://www.jeanpaul-edition.de/person.html?id=" oxy_xpath("substring-after(@hand, '#')");
+    color: gray;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+hi[hand = '#unknown']:not([rendition= '#f']):hover:after,
+del[hand = '#unknown']:hover:after,
+add[hand = '#unknown']:hover:after{
+    content: "Unbekannt";
+    color: gray;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+hi[hand = '#addressee']:not([rendition= '#f']):hover:after,
+del[hand = '#addressee']:hover:after,
+add[hand = '#addressee']:hover:after{
+    content: "Empfänger";
+     color: gray;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+hi[hand = '#author']:not([rendition= '#f']):hover:after,
+del[hand = '#author']:hover:after,
+add[hand = '#author']:hover:after {
+    content: "Sender";
+    color: gray;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+teiHeader del {
+    text-decoration:line-through;
+}
+
+sourceDesc msDesc physDesc p:before,
+sourceDesc witness desc[type="p"]:before{
+    content: "Beschreibung: ";
+    font-style: normal;
+    font-weight: normal;
+    padding-left: 1em;
+    /*display: inline-block;*/
+}
+
+sourceDesc msDesc physDesc:before {
+    display:none
+}
+
+physDesc {
+    display:none !important;
+}
+
+physDesc:has(p), physDesc:has(handDesc),
+physDesc p, physDesc:has(accMat){
+    display:block !important;
+}
+
+physDesc, witness > desc{
+    display: block;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border-top: 0;
+    
+}
+
+sourceDesc msDesc physDesc p,
+sourceDesc witness desc desc[type="p"]{
+    display: inline;
+    -oxy-placeholder-content: "[Hier Papier, Format etc. eintragen]";
+}
+
+witness {
+    padding-bottom: 0.4em;
+    padding-top: 0.3em;
+}
+
+seg[type = 'transposition'] {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dotted gray;
+
+    -oxy-placeholder-content: "[Hier versetzten Text eingeben (ggf. vorher neuen Absatz anlegen!)]";
+    -oxy-show-placeholder: always;
+}
+
+seg[type = 'transposition'][hand= '#author']:before {
+    -oxy-prepend-content: " von Hand des Verfassers," ; 
+        font-style: italic;
+}
+
+seg[type = 'transposition'][hand= '#addresse']:before {
+    -oxy-prepend-content: " von Hand des Empfängers," ;     font-style: italic;
+}
+
+seg[type = 'transposition'][hand= '#unknown']:before {
+    -oxy-prepend-content: " von unbekannter Hand," ;     font-style: italic;
+}
+
+seg[type = 'transposition'][hand^= '#JP']:before {
+    -oxy-prepend-content: " von Hand einer Person aus dem Register " url('gfx/link.png') " , "; ; 
+    link: "https://www.jeanpaul-edition.de/person.html?id=" oxy_xpath("substring-after(@hand, '#')");     font-style: italic;
+}
+
+seg[type = 'transposition'][subtype= 'continuedText']:before {
+    -oxy-prepend-content: "Weitergeführter Text" ; 
+}
+
+seg[type = 'transposition'][subtype= 'postscript']:before {
+    -oxy-prepend-content: "Postskriptum" ; 
+}
+
+seg[type = 'transposition'][subtype= 'note']:before {
+    -oxy-prepend-content: "Anmerkung" ; 
+}
+
+seg[type = 'transposition'][subtype= 'other']:before {
+    -oxy-prepend-content: "Textversetzung" ; 
+}
+
+seg[rend = 'mBottom']:before  {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", unterer Rand, gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+}
+
+seg[rend = 'mTop']:before  {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", oberer Rand, gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+}
+
+seg[rend = 'right']:before {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", rechter Rand, gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+
+}
+
+seg[rend = 'left']:before  {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", linker Rand, gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+}
+
+seg[rend = 'margin']:before  {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", am Rand (nicht weiter spezifiziert), gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+}
+
+seg[rend = 'other']:before  {
+    -oxy-prepend-content: " auf Seite " oxy_xpath("substring-after(@corresp, '#page')") ", keine Randangabe, gedreht um " oxy_xpath("substring-after(@style, 'rotate-')") " Grad";
+    display: block;
+    color: gray;
+    position: relative;
+    font-size: 85%;
+    text-decoration: none;
+}
+
+div[type = 'writingSession']:before {
+    border-top: 1px dotted silver;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Schreibakt " attr(n);
+
+}
+
+div[type = 'attachment']:before {
+    border-top: 3px dotted silver;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Beilage";
+
+}
+
+div[type = 'writingSession'][hand]:not([hand = "#addressee"]):not([hand = "#author"]):not([hand = "#unknown"]):before {
+     margin-top: 5px;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Schreibakt " attr(n) " Person aus dem Register "  url('gfx/link.png') ; 
+    link: "https://www.jeanpaul-edition.de/person.html?id=" oxy_xpath("substring-after(@hand, '#')");
+
+}
+
+div[type = 'attachment'][hand]:not([hand = "#addressee"]):not([hand = "#author"]):not([hand = "#unknown"]):before {
+     margin-top: 5px;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Beilage: Person aus dem Register "  url('gfx/link.png') ; 
+    link: "https://www.jeanpaul-edition.de/person.html?id=" oxy_xpath("substring-after(@hand, '#')");
+
+}
+
+div[type = 'writingSession'][hand = "#addressee"]:before{
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Schreibakt " attr(n) " Empfänger";
+}
+
+div[type = 'attachment'][hand = "#addressee"]:before{
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Beilage: Empfänger";
+}
+
+div[type = 'writingSession'][hand = "#author"]:before{
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Schreibakt " attr(n) " Sender";
+}
+
+div[type = 'attachment'][hand = "#author"]:before{
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Beilage: Sender";
+}
+
+div[type = 'writingSession'][hand = "#unknown"]:before{
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Schreibakt " attr(n) " Unbekannt";
+}
+
+div[type = 'attachment'][hand = "#unknown"]:before {
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 80%;
+    color: silver;
+    display: block;
+    content: "Beilage: Unbekannt";
+}
+
+postscript p {
+    -oxy-placeholder-content: "[Postskriptum]";
+}
+
+teiHeader hi[rendition = "#aq"] {
+    font-family: Biolinum;
+    -oxy-display-tags: none;
+}
+
+teiHeader hi[rendition = "#u"] {
+    text-decoration: underline;
+    -oxy-display-tags: none;
+}
+
+teiHeader hi[rendition = "#uu"] {
+    text-decoration: underline;
+    -oxy-display-tags: none;
+}
+
+unclear[reason='damaged']:hover:after {
+    content: "[?] Materialschaden";
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+    color: brown;
+}
+
+unclear[reason='covered']:hover:after {
+    content: "[?] Überschreibung";
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+    color: brown;
+}
+
+unclear[reason='illegible']:hover:after {
+    content: "[?] Unleserlich";
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+    color: brown;
+}
+
+table row[rend='sum'] cell {
+
+    border-top: 3px solid black;
+}
+
+correspAction[type='read']:before {
+    padding-top: 5px;
+    font-weight: bold;
+    content: "Erweiterte Leserschaft: ";
+}
+
+correspAction[type='read'] {
+    display: block
+}
+
+correspAction[type='read'] persName[cert='high']:before {
+    display: inline;
+    color: black;
+    content: "Nachweislich: "; 
+}
+
+correspAction[type='read'] persName[cert='medium']:before {
+    display: inline;
+    color: black;
+    content: "Anzunehmen: "; 
+}
+
+mod[type='variant'] add[place = 'superlinear']:hover:after {
+    content: "Var. ÜdZ";
+    color: black;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+mod[type='variant'] add[place = 'sublinear']:hover:after {
+    content: "Var. UdZ";
+    color: black;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+mod[type='variant'] add[place = 'intralinear']:hover:after {
+    content: "Var. IdZ";
+    color: black;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+mod[type='variant'] add[place = 'other']:hover:after {
+    content: "Var.";
+    color: black;
+    font-style: italic;
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+text mod {
+    -oxy-display-tags: none;
+}
+
+quote mod sic,
+text mod sic {
+    background-color: #95d6ce;
+    -oxy-display-tags: none;
+}
+
+quote mod add,
+text mod add {
+    font-style: italic;
+    background-color: #b8f9f2;
+    color: #099e8c;
+    -oxy-display-tags: none;
+    -oxy-placeholder-content: "[Variante]";
+}
